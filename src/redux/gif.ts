@@ -2,8 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 const key = 'lQZi7T3Wy75fepmP3GdfH3zsNpDGDa8l'
-const limit = 30
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${limit}&rating=g`
+
 
 interface GifState {
   gifs: {
@@ -17,8 +16,8 @@ interface GifState {
 }
 
 
-export const fetchGifs = createAsyncThunk('gif/fetchData', async () => {
-  const response = await fetch(url, {
+export const fetchGifs = createAsyncThunk('gif/fetchData', async (count: number) => {
+  const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${count}&rating=g`, {
     method: 'GET',
     headers: {
         'Content-type': 'application/json',
